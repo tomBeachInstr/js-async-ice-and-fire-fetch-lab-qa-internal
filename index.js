@@ -52,7 +52,6 @@ function fetchHouses() {
     })
   }
 
-
 }
 
 document.addEventListener('DOMContentLoaded', function() {
