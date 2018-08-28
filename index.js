@@ -11,17 +11,17 @@ function fetchBooks() {
 	    console.log("response:", response);
 	    return response.json();
 	  })
-	  .then(function(json) {
+	  .then(function(jsonData) {
 	    console.log("== then #2 ==");
-	    console.log("json:", json);
-      renderBooks(json);
+	    console.log("jsonData:", jsonData);
+      renderBooks(jsonData);
 	  });
 }
 
-function renderBooks(json) {
+function renderBooks(jsonData) {
   console.log("== renderBooks ==");
   const main = document.querySelector('main')
-  json.forEach(book => {
+  jsonData.forEach(book => {
     console.log("book:", book);
     const h2 = document.createElement('h2')
     h2.innerHTML = `<h2>${book.name}</h2>`
@@ -60,5 +60,5 @@ function fetchHouses() {
 
 document.addEventListener('DOMContentLoaded', function() {
   fetchBooks();
-  // fetchHouses();
+  fetchHouses();
 })
