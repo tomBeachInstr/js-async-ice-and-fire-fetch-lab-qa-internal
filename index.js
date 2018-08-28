@@ -1,8 +1,9 @@
 function fetchBooks() {
+  console.log("== fetchBooks ==");
 
   fetch('https://anapioficeandfire.com/api/books')
 	  .then(function(response) {
-	    console.log("== then #1 ==");
+	    console.log("-- books response --");
 	    console.log("response:", response);
 	    return response.json();
 	  })
@@ -10,24 +11,11 @@ function fetchBooks() {
 	    console.log("== then #2 ==");
 	    console.log("json:", json);
       renderBooks(json);
-
-	    // for (var i = 0; i < myJson.length; i++) {
-	    // 	let nextBook = myJson[i];
-		  //   console.log("nextBook.url:", nextBook.url);
-		  //   console.log("nextBook.name:", nextBook.name);
-		  //   console.log("nextBook.publisher:", nextBook.publisher);
-		  //   for (var i = 0; i < nextBook.povCharacters.length; i++) {
-		  //   	let nextChar = nextBook.povCharacters[i];
-			//     console.log("nextChar:", nextChar);
-		  //   };
-	    // };
-
-	    // let jsonStr = JSON.stringify(myJson);
-	    // console.log("jsonStr:", jsonStr);
 	  });
 }
 
 function renderBooks(json) {
+  console.log("== renderBooks ==");
   const main = document.querySelector('main')
   json.forEach(book => {
     console.log("book:", book);
@@ -37,6 +25,37 @@ function renderBooks(json) {
   })
 }
 
+function fetchHouses() {
+  console.log("== fetchHouses ==");
+
+  fetch('https://www.anapioficeandfire.com/api/houses')
+	  .then(function(response) {
+      console.log("-- houses response --");
+	    console.log("response:", response);
+	    return response.json();
+	  })
+	  .then(function(jsonData) {
+      console.log("-- houses json --");
+	    console.log("jsonData:", jsonData);
+      console.log("jsonData.length:", jsonData.length);
+      renderHouses(jsonData);
+	  });
+
+  function renderHouses(json) {
+    console.log("== renderHouses ==");
+    const main = document.querySelector('main')
+    json.forEach(house => {
+      console.log("house:", house);
+      // const h4 = document.createElement('h4')
+      // h4.innerHTML = `<h4>${house.name}</h4>`
+      // main.appendChild(h4)
+    })
+  }
+
+
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-  fetchBooks()
+  fetchBooks();
+  fetchHouses();
 })
